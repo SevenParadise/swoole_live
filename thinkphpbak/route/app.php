@@ -16,6 +16,3 @@ Route::get('think', function () {
 
 Route::get('sms/:mobile', 'index/sms');
 Route::get('login', 'index/login');
-
-Route::post('admin/image', 'admin/image');
-Route::get('admin/push', 'admin/push');
