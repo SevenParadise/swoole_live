@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>WS Client</h1>
+
+    <script>
+        var wsUrl = "ws://localhost:8812";
+        var websocket = new WebSocket(wsUrl);
+
+        websocket.onopen = function (evt) {
+            console.info("onopen:" + evt);
+            websocket.send("hello ws");
+        }
+
+        websocket.onmessage = function (evt) {
+            console.info("onmessage:" + evt.data)
+        }
+
+        websocket.onclose = function (evt) {
+            console.log("onclose:" + evt)
+        }
+
+        websocket.onerror = function (evt) {
+            console.log("onerror:" + evt)
+        }
+    </script>
+</body>
+</html>
