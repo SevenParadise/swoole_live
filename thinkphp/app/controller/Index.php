@@ -9,7 +9,7 @@ class Index extends BaseController
 {
     public function index()
     {
-        return phpinfo();
+        return "index";
     }
 
     public function sms($mobile = "18801773338") {

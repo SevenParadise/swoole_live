@@ -30,6 +30,7 @@ class Websocket
             'enable_static_handler' => true,
             'document_root' => '/Users/zhangcs/opt/env/dnmp/sites/swoole/study/thinkphp/public/static',
         ]);
+        $this->server->on('start', [$this, 'onStart']);
         $this->server->on('WorkerStart', [$this, 'onWorkerStart']);
         $this->server->on('open', [$this, 'onOpen']);
         $this->server->on('message', [$this, 'onMessage']);
@@ -38,6 +39,11 @@ class Websocket
         $this->server->on('request', [$this, 'onRequest']);
         $this->server->on('close', [$this, 'onClose']);
         $this->server->start();
+    }
+
+    public function onStart(){
+        swoole_set_process_name("live_master");
+
     }
 
     public function onWorkerStart($server, $work_id)
@@ -107,6 +113,11 @@ class Websocket
         $redis = (new RedisInstance())->get();
         $redis->sRem("game_live", $fd);
         $redis->close();
+    }
+
+    public function writeLog() {
+        $datas = array_merge(['data'=>date('Y-m-d H:i:s')], $_GET, $_POST, $_SERVER);
+        $str = json_encode($datas);
     }
 }
 

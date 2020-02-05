@@ -11,7 +11,7 @@
 use think\facade\Route;
 
 Route::get('think', function () {
-    return 'hello,ThinkPHP6!';
+    return 'hello,ThinkPHP6222!';
 });
 
 Route::get('sms/:mobile', 'index/sms');
